@@ -1,23 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+
+
+import Botones from './Components/Botones';
+import Cronometro from './Components/Cronometro';
 
 function App() {
+  //1-.state que inicializa y modifica el tiempo
+  const [tiempo, guardarTiempo] = useState({ms:0, s:0, m:0, h:0})
+
+  //4-.state que guarda y ejecuta la funcion empezar() con un setInterval cada 10 milisegundos
+  const [intervalo, setIntervalo] = useState()
+
+  //2-.Funcion del boton que inicia el tiempo y lo guarda en el state
+  const inicio = () => {
+    empezar();
+    setIntervalo(setInterval(empezar,10))
+  }
+
+  let actualizaMs = tiempo.ms, actualizaS = tiempo.s,actualizaM = tiempo.m,actualizaH = tiempo.h;
+
+  //3-.Funcion que va actualizando el tiempo
+  const empezar = ()=>{
+    if(actualizaM === 60){
+      actualizaH++;
+      actualizaM=0
+    }
+    if(actualizaS === 60){
+      actualizaM++;
+      actualizaS=0
+    }
+    if(actualizaMs === 100){
+      actualizaS++;
+      actualizaMs = 0;
+    }
+    actualizaMs++;
+    //4-.Se moifica en el state con el tiempo en proceso
+    return guardarTiempo({ms:actualizaMs, s:actualizaS, m:actualizaM, h:actualizaH})
+
+  }
+
+  const resetear = () =>{
+    clearInterval(intervalo)
+    guardarTiempo({ms:0, s:0, m:0, h:0})
+  }
+  
+  const detener = ()=>{
+    clearInterval(intervalo)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Cronometro tiempo = {tiempo}/>
+      <Botones inicio = {inicio} detener={detener} resetear={resetear}/>
     </div>
   );
 }
