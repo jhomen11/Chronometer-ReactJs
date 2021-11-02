@@ -5,16 +5,22 @@ import Botones from './Components/Botones';
 import Cronometro from './Components/Cronometro';
 
 function App() {
+
   //1-.state que inicializa y modifica el tiempo
   const [tiempo, guardarTiempo] = useState({ms:0, s:0, m:0, h:0})
 
   //4-.state que guarda y ejecuta la funcion empezar() con un setInterval cada 10 milisegundos
   const [intervalo, setIntervalo] = useState()
 
+  //5-. state que guarda el status del tiempo
+  const [status, guardarStatus] = useState(0)
+
   //2-.Funcion del boton que inicia el tiempo y lo guarda en el state
   const inicio = () => {
+    guardarStatus(1)
     empezar();
     setIntervalo(setInterval(empezar,10))
+
   }
 
   let actualizaMs = tiempo.ms, actualizaS = tiempo.s,actualizaM = tiempo.m,actualizaH = tiempo.h;
@@ -50,7 +56,7 @@ function App() {
   return (
     <div className="App">
       <Cronometro tiempo = {tiempo}/>
-      <Botones inicio = {inicio} detener={detener} resetear={resetear}/>
+      <Botones inicio = {inicio} detener={detener} resetear={resetear} status={status}/>
     </div>
   );
 }

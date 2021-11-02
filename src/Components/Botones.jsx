@@ -2,16 +2,33 @@ import React from 'react'
 
 export const Botones = (props) => {
     return (
-        <div>
-            <button
-            onClick={props.inicio}
-            >Iniciar</button>
-            
-            <button onClick={props.detener}
-            >Detener</button>
+     
+            <div>
+            {(props.status === 0)?
 
-            <button onClick={props.resetear}>Resetear</button>
-        </div>
+                <button
+                onClick={props.inicio}
+                >Iniciar</button>: ""
+            }
+            
+            {(props.status === 1)?
+            
+                <div>
+                    <button 
+                onClick={props.detener}
+                >Detener</button>
+
+                <button 
+                onClick={props.resetear}
+                >Resetear</button>
+                </div>: ""
+                
+            }
+            </div> 
+            
+
+            //  */
+        
         
     )
 }
