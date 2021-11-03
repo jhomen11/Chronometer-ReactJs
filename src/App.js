@@ -12,7 +12,7 @@ function App() {
   //4-.state que guarda y ejecuta la funcion empezar() con un setInterval cada 10 milisegundos
   const [intervalo, setIntervalo] = useState()
 
-  //5-. state que guarda el status del tiempo
+  //5-. state que guarda el comportamiento de los botones
   const [status, guardarStatus] = useState(0)
 
   //2-.Funcion del boton que inicia el tiempo y lo guarda en el state
@@ -40,23 +40,29 @@ function App() {
       actualizaMs = 0;
     }
     actualizaMs++;
-    //4-.Se moifica en el state con el tiempo en proceso
+    //4-.Se moifica en el state tiempo con el tiempo en proceso
     return guardarTiempo({ms:actualizaMs, s:actualizaS, m:actualizaM, h:actualizaH})
 
+  }
+
+  const continuar = ()=>{
+    inicio()
   }
 
   const resetear = () =>{
     clearInterval(intervalo)
     guardarTiempo({ms:0, s:0, m:0, h:0})
+    guardarStatus(0)
   }
   
   const detener = ()=>{
     clearInterval(intervalo)
+    guardarStatus(2)
   }
   return (
     <div className="App">
       <Cronometro tiempo = {tiempo}/>
-      <Botones inicio = {inicio} detener={detener} resetear={resetear} status={status}/>
+      <Botones inicio = {inicio} detener={detener} resetear={resetear} continuar={continuar} status={status}/>
     </div>
   );
 }

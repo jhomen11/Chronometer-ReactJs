@@ -24,7 +24,23 @@ export const Botones = (props) => {
                 </div>: ""
                 
             }
-            </div> 
+
+            {(props.status === 2)?
+                        
+                        <div>
+                            <button 
+                        onClick={props.continuar}
+                        >Continuar</button>
+
+                        <button 
+                        onClick={props.resetear}
+                        >Resetear</button>
+                        </div>: ""
+                        
+            }
+            </div>
+
+            
             
 
             //  */
