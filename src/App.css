@@ -12,21 +12,28 @@
   
 }
 h2{
+  border: 3px solid #fff;
+  border-radius: 5px;
+  color: #fff;
   margin: 5px;
+  padding: 5px;
   font-size: 40px;
+  width: 60px;
+  height: 60px;
 }
 .App{
-  background-color: rgb(209, 209, 223);
+  background-color: #000;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 500px;
-  height: 200px;
+  width: 400px;
+  height: 150px;
 }
 
 
 .display{
   display: flex;
+  align-items: center;
 }
