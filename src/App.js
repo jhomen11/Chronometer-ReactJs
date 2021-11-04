@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-
+import './App.css';
 import Botones from './Components/Botones';
 import Cronometro from './Components/Cronometro';
 
@@ -60,9 +60,11 @@ function App() {
     guardarStatus(2)
   }
   return (
-    <div className="App">
+    <div className="container">
+      <div className="App">
       <Cronometro tiempo = {tiempo}/>
       <Botones inicio = {inicio} detener={detener} resetear={resetear} continuar={continuar} status={status}/>
+    </div>
     </div>
   );
 }

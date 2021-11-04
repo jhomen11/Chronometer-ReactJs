@@ -3,7 +3,7 @@ import React from 'react'
 export const Botones = (props) => {
     return (
      
-            <div>
+            <div className="control" >
             {(props.status === 0)?
 
                 <button
